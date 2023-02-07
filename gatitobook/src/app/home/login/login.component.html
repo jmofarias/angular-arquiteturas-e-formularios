@@ -1,0 +1,20 @@
+<h4 class="text-center">Login</h4>
+
+<!-- passando as informacoes dos inputs para o servico de autenticacao -->
+<!-- ngSubmit: evento do formulario do Angular que nesse caso vai chamar o metodo login() -->
+<form class="form mt-4" (ngSubmit)="login()">
+    <div class="form-group">
+        <input class="form-control" placeholder="Nome do usuário"
+        [(ngModel)]="usuario" name="usuario"
+        />
+        <!-- ngModel vai mapear essa input para um atributo usuario -->
+    </div>
+
+    <div class="form-group">
+        <input type="password" class="form-control" placeholder="Senha"
+        [(ngModel)]="senha" name="senha"
+        />
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block">Login</button>
+</form>
