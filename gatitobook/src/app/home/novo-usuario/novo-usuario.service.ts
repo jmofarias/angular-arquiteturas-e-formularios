@@ -14,4 +14,10 @@ export class NovoUsuarioService {
     // esse método vai enviar para o backend o novoUsuario 
     return this.http.post('http://localhost:3000/user/signup', novoUsuario);
   }
+
+  // validação assíncrona: fazer uma requisição ao nosso back-end para saber se o usuário já está criado na nossa base de dados
+  verificaUsuarioExistente(nomeUsuario: string){
+    // fazendo um get no back-end
+    return this.http.get(`http://localhost:3000/user/exists/${nomeUsuario}`);
+  }
 }

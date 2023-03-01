@@ -26,6 +26,7 @@
         <input placeholder="Usuário" class="form-control" formControlName="userName">
     </div>
     <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo && novoUsuarioForm.get('userName')?.touched" mensagem="Usuário deve ter apenas letras minúsculas."></app-mensagem>
+    <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors?.usuarioExistente" mensagem="Usuário já existe."></app-mensagem>
 
     <div class="form-group">
         <input type="password" placeholder="Senha" class="form-control" formControlName="password">

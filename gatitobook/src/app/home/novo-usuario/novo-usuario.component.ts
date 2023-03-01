@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { minusculoValidator } from './minusculo.validator';
 import { NovoUsuario } from './novo-usuario';
 import { NovoUsuarioService } from './novo-usuario.service';
+import { UsuarioExisteService } from './usuario-existe.service';
 
 @Component({
   selector: 'app-novo-usuario',
@@ -15,9 +16,11 @@ export class NovoUsuarioComponent implements OnInit {
   novoUsuarioForm!: FormGroup;
 
   // serviço para facilitar a criação de formulários reativos (FormBuilder)
-  constructor(private formBuilder: FormBuilder, private novoUsuarioService: NovoUsuarioService) {
-  
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private novoUsuarioService: NovoUsuarioService,
+    private usuarioExistenteService: UsuarioExisteService
+    ) {}
 
   // ngOnInit: método de ciclo de vida do angular que é executado após a construção ser feita com sucesso da classe
   ngOnInit(): void {
@@ -29,7 +32,8 @@ export class NovoUsuarioComponent implements OnInit {
       // Validators.email: campo do tipo email
       email: ['', [Validators.required, Validators.email]],
       fullName: ['', [Validators.required, Validators.minLength(4)]],
-      userName: ['', [minusculoValidator]],
+      // injetando a validação se o usuário já existe aqui
+      userName: ['', [minusculoValidator], [this.usuarioExistenteService.usuarioJaExiste()]],
       password: [''],
     })
   }
