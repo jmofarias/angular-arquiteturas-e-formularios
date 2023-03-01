@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+// @Injectable: anotacao angular que indica para o mecanismo de gestao de dependencia do angular que essa classe pode ser injetada em outro componente ou outro servico
 @Injectable({
   providedIn: 'root'
 })

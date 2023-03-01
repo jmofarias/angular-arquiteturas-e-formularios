@@ -1,0 +1,37 @@
+<h4 class="text-center">Registre-se e mostre seu pet ao mundo!</h4>
+
+<!-- [formGroup]: quer dizer que esse formulário vai representar um formulário angular -->
+<!-- (): quando esse formulário for submetido ele vai chamar o cadastrar -->
+<form class="form mt-4" [formGroup]="novoUsuarioForm" (submit)="cadastrar()">
+    <div class="form-group">
+        <!-- formControlName: vai referenciar o email do nosso form -->
+        <input placeholder="e-mail" class="form-control" formControlName="email">
+    </div>
+    <!-- para mostrar o estado da validação no nosso template -->
+    <!-- componente genérico de mensagem -->
+    <!-- *ngIf: padrão do angular que vai dizer quando que essa imagem irá aparecer -->
+    <!-- novoUsuarioForm.get('email'): pegando o estado do formControlName email -->
+    <!-- novoUsuarioForm.get('email')?.errors.required && novoUsuarioForm.get('email')?.touched : se existe o elemento pegue o atributo do erro que é do campo abrigatório e esse elemento vai mostrar se o usuário passar por esse campo -->
+    <app-mensagem *ngIf="novoUsuarioForm.get('email')?.errors?.required && novoUsuarioForm.get('email')?.touched" mensagem="E-mail obrigatório.">
+    </app-mensagem>
+    <app-mensagem *ngIf="novoUsuarioForm.get('email')?.errors?.email && novoUsuarioForm.get('email')?.touched" mensagem="E-mail no formato incorreto.">
+    </app-mensagem>
+
+    <div class="form-group">
+        <input placeholder="Nome Completo" class="form-control" formControlName="fullName">
+    </div>
+    <app-mensagem *ngIf="novoUsuarioForm.get('fullName')?.errors && novoUsuarioForm.get('fullName')?.touched" mensagem="Nome incorreto."></app-mensagem>
+
+    <div class="form-group">
+        <input placeholder="Usuário" class="form-control" formControlName="userName">
+    </div>
+    <app-mensagem *ngIf="novoUsuarioForm.get('userName')?.errors?.minusculo && novoUsuarioForm.get('userName')?.touched" mensagem="Usuário deve ter apenas letras minúsculas."></app-mensagem>
+
+    <div class="form-group">
+        <input type="password" placeholder="Senha" class="form-control" formControlName="password">
+    </div>
+
+    <button class="btn btn-primary btn-block">Cadastro</button>
+</form>
+
+<p>Já é um usuário? <a [routerLink]="['']">Faça Login</a> </p>
